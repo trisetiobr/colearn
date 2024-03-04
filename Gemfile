@@ -71,6 +71,9 @@ group :test do
   gem "selenium-webdriver"
   gem 'pry-rails'
   gem 'byebug'
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'rails-controller-testing'
 end
 
 gem "rubocop", "~> 1.61"

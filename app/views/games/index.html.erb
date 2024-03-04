@@ -30,7 +30,7 @@
     <tr>
       <% row.each_with_index do |cell, col_index| %>
         <td>
-          <%= button_tag (cell == 1 ? 'O' : (cell == 2 ? 'X' : '')), class: 'move-button', data: { x: col_index, y: row_index }, disabled: cell.present? || session[:winner].present? %>
+          <%= button_tag (cell == 1 ? 'X' : (cell == 2 ? 'O' : '')), class: 'move-button', data: { x: col_index, y: row_index }, disabled: cell.present? || session[:winner].present? %>
         </td>
       <% end %>
     </tr>
@@ -53,12 +53,11 @@
 <script>
 
   $(document).ready(function() {
-    let annotation = '<%= session[:current_move] == 1 ? 'O' : 'X' %>';
+    let annotation = '<%= session[:current_move] == 1 ? 'X' : 'O' %>';
     $('.move-button').click(function() {
       $('#grid_x_field').val($(this).attr('data-x'));
       $('#grid_y_field').val($(this).attr('data-y'));
       $('#end-turn-button').prop('disabled', false);
-
       $(this).html(annotation);
       $('.move-button').prop('disabled', true);
     });

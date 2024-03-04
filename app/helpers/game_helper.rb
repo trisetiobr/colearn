@@ -6,11 +6,21 @@ module GameHelper
     validate_player1_field && validate_player2_field
   end
 
+  def board_size
+    config_board_size = Rails.application.config.board_size
+
+    return 3 if config_board_size < 3
+
+    return 20 if config_board_size > 20
+
+    config_board_size
+  end
+
   def initialize_game_session
     session[:player1] = params[:player1]
     session[:player2] = params[:player2]
     session[:current_move] = 1
-    session[:board] = Array.new(3) { Array.new(3, '') }
+    session[:board] = Array.new(board_size) { Array.new(board_size, '') }
   end
 
   def invalid_move?
