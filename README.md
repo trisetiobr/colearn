@@ -40,7 +40,8 @@ bundle exec rspec spec
 - If you update something, and want to release this project to a new version please run this followings command
 ```
 yarn version --new-version <version_number>
-git push origin master --tags
+git tag -a v<version_number> -m "Release <version_number>"
+git push origin main --tags
 ```
 ## How to play
 ### Enter player's information
