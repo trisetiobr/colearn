@@ -1,0 +1,61 @@
+<p>Current Move: 
+  <% if session[:current_move] == 1 %>
+    <%= session[:player1] %>
+  <% else %>
+    <%= session[:player2] %>
+  <% end %>
+</p>
+<p>Player 1 Name: <%= session[:player1] %></p>
+<p>Player 2 Name: <%= session[:player2] %></p>
+<p>Board</p>
+<% if session[:winner].present? %>
+  <div style="color: green;">
+    The winner is: <%= session["player#{session[:winner]}"] %>
+  </div>
+<% end %>
+
+<% if flash[:game_alert].present? %>
+  <div style="color: red;">
+    <%= flash[:game_alert] %>
+  </div>
+<% end %>
+<table>
+  <% session[:board].each_with_index do |row, row_index| %>
+    <tr>
+      <% row.each_with_index do |cell, col_index| %>
+        <td>
+          <%= button_tag (cell == 1 ? 'O' : (cell == 2 ? 'X' : '')), class: 'move-button', data: { x: col_index, y: row_index }, disabled: cell.present? %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+<br />
+
+<%= button_to "Reset", "/games", method: :delete, class: "btn btn-primary", id: "end-turn-button" %>
+<br />
+
+<% if session[:winner].blank? %>
+<%= button_to "Undo", games_path, id: 'undo-button', method: :get, class: "btn btn-primary" %>
+<form id="form-end-turn" action="/games/move" method="post">
+  <%= hidden_field_tag 'grid_x', '', id: 'grid_x_field' %>
+  <%= hidden_field_tag 'grid_y', '', id: 'grid_y_field' %>
+  <%= hidden_field_tag 'player_move', '', id: 'player_move', value: session[:current_move] %>
+  <%= button_tag "End Turn", id: 'end-turn-button', type: 'submit' %>
+</form>
+<% end %>
+<script>
+
+  $(document).ready(function() {
+    let annotation = '<%= session[:current_move] == 1 ? 'O' : 'X' %>';
+    $('.move-button').click(function() {
+      $('#grid_x_field').val($(this).attr('data-x'));
+      $('#grid_y_field').val($(this).attr('data-y'));
+      $('#end-turn-button').prop('disabled', false);
+
+      console.log($('#end-turn-button'));
+      $(this).html(annotation);
+      $('.move-button').prop('disabled', true);
+    });
+  });
+</script>
