@@ -9,9 +9,15 @@
 <p>Player 2 Name: <%= session[:player2] %></p>
 <p>Board</p>
 <% if session[:winner].present? %>
-  <div style="color: green;">
-    The winner is: <%= session["player#{session[:winner]}"] %>
-  </div>
+  <% if session[:winner] == 'draw' %>
+    <div style="color: red;">
+      Draw, please reset the game
+    </div>
+  <% else %>
+    <div style="color: green;">
+      The winner is: <%= session["player#{session[:winner]}"] %>
+    </div>
+  <% end %>
 <% end %>
 
 <% if flash[:game_alert].present? %>
@@ -24,7 +30,7 @@
     <tr>
       <% row.each_with_index do |cell, col_index| %>
         <td>
-          <%= button_tag (cell == 1 ? 'O' : (cell == 2 ? 'X' : '')), class: 'move-button', data: { x: col_index, y: row_index }, disabled: cell.present? %>
+          <%= button_tag (cell == 1 ? 'O' : (cell == 2 ? 'X' : '')), class: 'move-button', data: { x: col_index, y: row_index }, disabled: cell.present? || session[:winner].present? %>
         </td>
       <% end %>
     </tr>
@@ -53,7 +59,6 @@
       $('#grid_y_field').val($(this).attr('data-y'));
       $('#end-turn-button').prop('disabled', false);
 
-      console.log($('#end-turn-button'));
       $(this).html(annotation);
       $('.move-button').prop('disabled', true);
     });

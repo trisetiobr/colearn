@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - Gemfile
+    - Gemfile.lock
+    - Rakefile
+    - config.ru
+    - db/**/*
+    - config/**/*
+    - bin/**/*
+    - test/**/*
