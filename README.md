@@ -5,6 +5,7 @@ This project needs to run using followings requirement
 ```
 ruby 3.1.2
 rails 7.0.8
+yarn 1.22.18
 ```
 To initiate installation, please running command
 ```
@@ -35,6 +36,12 @@ bundle exec rspec spec
 ![Code Coverage](./screenshot/code-coverage.png)
 - After running the rspec. To check code coverage, you can see the result in folder ./coverage/index.html
 
+## Update version tag
+- If you update something, and want to release this project to a new version please run this followings command
+```
+yarn version --new-version <version_number>
+git push origin master --tags
+```
 ## How to play
 ### Enter player's information
 ![Step 1](./screenshot/readme-1.png)
