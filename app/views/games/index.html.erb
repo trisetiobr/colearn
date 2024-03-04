@@ -5,8 +5,8 @@
     <%= session[:player2] %>
   <% end %>
 </p>
-<p>Player 1 Name: <%= session[:player1] %></p>
-<p>Player 2 Name: <%= session[:player2] %></p>
+<p>Player 1 Name: <%= session[:player1] %> (X)</p>
+<p>Player 2 Name: <%= session[:player2] %> (O)</p>
 <p>Board</p>
 <% if session[:winner].present? %>
   <% if session[:winner] == 'draw' %>

@@ -3,7 +3,7 @@
 <h1>Enter Player Names</h1>
 <%= form_tag('/games') do %>
   <div class="field">
-    <%= label_tag 'player1', 'Player 1 Name (O):' %>
+    <%= label_tag 'player1', 'Player 1 Name (X):' %>
     <%= text_field_tag 'player1', params[:player1], maxlength: 32 %>
     <% if flash[:alert_player1].present? %>
       <div style="color: red;">
@@ -13,7 +13,7 @@
   </div>
 
   <div class="field">
-    <%= label_tag 'player2', 'Player 2 Name (X):' %>
+    <%= label_tag 'player2', 'Player 2 Name (O):' %>
     <%= text_field_tag 'player2', params[:player2], maxlength: 32 %>
     <% if flash[:alert_player2].present? %>
       <div style="color: red;">
