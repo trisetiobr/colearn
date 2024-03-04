@@ -37,7 +37,7 @@ bundle exec rspec spec
 
 ## How to play
 ### Enter player's information
-![Step 1](./screenshot/code-coverage.png)
+![Step 1](./screenshot/readme-1.png)
 - The homepage of this project will shown the input box for the player's name
 - System will validate the player name is required
 - Player1 will play the first move has annotation "X" for the board
