@@ -21,6 +21,20 @@ The Tic Tac Toe board size can be configurable by changing value ```config.board
 - The minimum value is 3, if the number lower. System will detect it as 3 x 3 board  size
 - The maximum value is 20, if the number higher. System will detect it as 20 x 20 board size
 
+## Linter
+This project use rubocop to checking code linter, to ensure all of the code linter has been standarize. Please run command
+```
+bundle exec rubocop
+```
+
+## Testing
+- To test if the project run well, please run command
+```
+bundle exec rspec spec
+```
+![Code Coverage](./screenshot/code-coverage.png)
+- After running the rspec. To check code coverage, you can see the result in folder ./coverage/index.html
+
 ## How to play
 ### Enter player's information
 ![Step 1](./screenshot/readme-1.png)
